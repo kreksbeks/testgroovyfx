@@ -1,0 +1,70 @@
+
+apply plugin:'groovy'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+
+ext.javafxHome = System.env['JAVAFX_HOME']
+ext.javaHome = System.env['JAVA_HOME']
+
+repositories { mavenCentral() }
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.6'
+    compile 'org.apache.ivy:ivy:2.2.0'
+    compile 'org.codehaus.groovyfx:groovyfx:0.3.1'
+    compile files("$javafxHome/jfxrt.jar", "${javaHome}/lib/ant-javafx.jar", "${javaHome}/jre/lib/jfxrt.jar")
+
+    testCompile 'junit:junit:4.11'
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/groovy'
+        }
+        groovy {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+
+    test {
+        groovy {
+            srcDir 'test/java'
+        }
+        java {
+            srcDir 'test/java'
+        }
+        resources {
+            srcDir 'test/resources'
+        }
+    }
+}
+
+task debug(type: JavaExec) {
+    main = 'com.experiment.Designer'
+    classpath sourceSets.main.runtimeClasspath
+}
+
+task makeDirs(description:'make all dirs for project setup') << {
+    def sources = [sourceSets.main, sourceSets.test]
+    sources*.allSource*.srcDirs.flatten().each { File srcDir ->
+        println "making $srcDir"
+        srcDir.mkdirs()
+    }
+}
+
+task wrap(type:Wrapper, description:"create a gradlew") {
+    gradleVersion = '1.7'
+}
+
+//
+//idea {
+//    project {
+//        jdkName = '1.7'
+//        languageLevel = '1.7'
+//    }
+//}

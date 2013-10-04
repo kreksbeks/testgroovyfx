@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="groovyfx-0.3.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.codehaus.groovyfx/groovyfx/0.3.1/jar/d45959254c7e122a24ba079b0752c6436f355f60/groovyfx-0.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/org.codehaus.groovyfx/groovyfx/0.3.1/source/7b9ee66e1da3fb766a85b8104e7d474ee09924a/groovyfx-0.3.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
